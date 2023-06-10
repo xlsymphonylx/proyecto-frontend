@@ -1,26 +1,23 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
+<script setup>
+import Swal from "sweetalert2";
+import FeedbackForm from "./components/FeedbackForm.vue";
+import Navbar from "./components/Navbar.vue";
+import { submitFeedback } from "./services/feedbackService";
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+const showResult = async (feedback) => {
+  const { result } = await submitFeedback(feedback);
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  Swal.fire({
+    title: result === "Positivo" ? "Positivo" : "Negativo",
+    text:
+      result === "Positivo"
+        ? "El resultado del comentario es positivo"
+        : "El resultado del comentario es negativo",
+    icon: result === "Positivo" ? "success" : "error",
+  });
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<template>
+  <div><Navbar /> <feedback-form @feedback="showResult" /></div>
+</template>
