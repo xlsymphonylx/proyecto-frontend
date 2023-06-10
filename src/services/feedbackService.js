@@ -12,5 +12,13 @@ const submitFeedback = async (comment) => {
     console.error(error);
   }
 };
+const getComments = async () => {
+  try {
+    const { data } = await axios.get(`${API_BASE_URL}/comments`);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-export { submitFeedback };
+export { submitFeedback, getComments };

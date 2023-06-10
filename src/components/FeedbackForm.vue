@@ -11,7 +11,7 @@ const submitFeedback = () => {
 </script>
 
 <template>
-  <div class="container mt-5">
+  <div class="container mt-5 mb-5">
     <div class="card">
       <div class="card-header">
         <h4>Comentarios a Restaurante</h4>
@@ -45,7 +45,7 @@ const submitFeedback = () => {
             class="btn btn-primary"
             @click.prevent="submitFeedback"
           >
-            Submit
+            Enviar Comentario
           </button>
         </form>
       </div>
